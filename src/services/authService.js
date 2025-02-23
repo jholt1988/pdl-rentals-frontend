@@ -1,0 +1,37 @@
+import axios from "axios";
+
+const API_URL = "http://localhost:5000/api/users"; // Change this if your backend is hosted
+
+// Register User
+export const registerUser = async (userData) => {
+    try {
+               console.log(userData);
+        const response = await axios.post(`${API_URL}/register`, userData);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        throw error.response ? error.response.data : error.message;
+    }
+};
+
+// Login User
+export const loginUser = async (userData) => {
+    try {
+        const response = await axios.post(`${API_URL}/login`, userData);
+
+        localStorage.setItem("token", response.data.token); // Store token for authentication
+        return response.data
+    } catch (error) {
+        throw error.response ? error.response.data : error.message;
+    }
+};
+
+// Logout User
+export const logoutUser = () => {
+    localStorage.removeItem("token");
+};
+
+// Get Token
+export const getToken = () => {
+    return localStorage.getItem("token");
+};

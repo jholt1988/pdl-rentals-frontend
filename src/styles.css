@@ -1,0 +1,115 @@
+/* Global Styles */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #F5F7FA;
+    color: #34495E;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header {
+    background-color: #2C3E50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Forms */
+form {
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #1ABC9C;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #16A085;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #2C3E50;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    background-color: #34495E;
+}
+
+/* Dashboard */
+.dashboard {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    background: white;
+    padding: 10px;
+    border-collapse: collapse;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #1ABC9C;
+    color: white;
+}
+
+td {
+    text-align: center;
+}
+
+/* Buttons */
+.delete-btn {
+    background-color: #E74C3C;
+}
+
+.delete-btn:hover {
+    background-color: #C0392B;
+}
