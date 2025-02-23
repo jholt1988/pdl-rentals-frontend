@@ -1,12 +1,23 @@
 import axios from "axios";
 import { getToken } from "./authService";
+import { setupCache } from "axios-cache-adapter";
+import axiosRetry from "axios-retry";
+import { debounce } from "lodash";
+import { io } from "socket.io-client";
 
 const API_URL = "http://localhost:5000/api";
 
 // Axios instance with authentication headers
+const cache = setupCache({
+    maxAge: 15 * 60 * 1000, // 15 minutes
+});
+
 const axiosInstance = axios.create({
     baseURL: API_URL,
+    adapter: cache.adapter,
 });
+
+axiosRetry(axiosInstance, { retries: 3 });
 
 axiosInstance.interceptors.request.use(
     (config) => {
@@ -16,7 +27,6 @@ axiosInstance.interceptors.request.use(
         } else {
             delete config.headers.Authorization;
         }
-            
         return config;
     },
     (error) => {
@@ -24,9 +34,20 @@ axiosInstance.interceptors.request.use(
     }
 );
 
+// WebSocket connection for real-time updates
+const socket = io("http://localhost:5000");
+
+socket.on("connect", () => {
+    console.log("Connected to WebSocket server");
+});
+
+socket.on("disconnect", () => {
+    console.log("Disconnected from WebSocket server");
+});
+
 // Property API functions
-export const fetchProperties = async () => {
-    const response = await axiosInstance.get("/properties");
+export const fetchProperties = async (params) => {
+    const response = await axiosInstance.get("/properties", { params });
     return response.data;
 };
 
@@ -45,8 +66,8 @@ export const deleteProperty = async (id) => {
 };
 
 // Tenant API functions
-export const fetchTenants = async () => {
-    const response = await axiosInstance.get("/tenants");
+export const fetchTenants = async (params) => {
+    const response = await axiosInstance.get("/tenants", { params });
     return response.data;
 };
 
@@ -64,10 +85,9 @@ export const deleteTenant = async (id) => {
     await axiosInstance.delete(`/tenants/${id}`);
 };
 
-
 // Payment API functions
-export const fetchPayments = async () => {
-    const response = await axiosInstance.get("/payments");
+export const fetchPayments = async (params) => {
+    const response = await axiosInstance.get("/payments", { params });
     return response.data;
 };
 
@@ -86,8 +106,8 @@ export const deletePayment = async (id) => {
 };
 
 // Maintenance Request API functions
-export const fetchMaintenanceRequests = async () => {
-    const response = await axiosInstance.get("/maintenance");
+export const fetchMaintenanceRequests = async (params) => {
+    const response = await axiosInstance.get("/maintenance", { params });
     return response.data;
 };
 
@@ -105,8 +125,8 @@ export const deleteMaintenanceRequest = async (id) => {
     await axiosInstance.delete(`/maintenance/${id}`);
 };
 
-export const getDashboardStats = async () => {
-    const response = await axiosInstance.get("/admin/stats");
+export const getDashboardStats = async (params) => {
+    const response = await axiosInstance.get("/admin/stats", { params });
     return response.data;
 };
 
@@ -115,8 +135,8 @@ export const sendPaymentStatement = async (tenantId) => {
     return response.data;
 };
 
-export const fetchLeases = async () => {
-    const response = await axiosInstance.get("/leases");
+export const fetchLeases = async (params) => {
+    const response = await axiosInstance.get("/leases", { params });
     return response.data;
 };
 
@@ -134,9 +154,15 @@ export const deleteLease = async (id) => {
     await axiosInstance.delete(`/leases/${id}`);
 };
 
-export const fetchTenantBalances = async () => {
-    const response = await axiosInstance.get("/payments/balances");
+export const fetchTenantBalances = async (params) => {
+    const response = await axiosInstance.get("/payments/balances", { params });
     return response.data;
 };
 
-
+// Debounced API functions
+export const debouncedFetchProperties = debounce(fetchProperties, 300);
+export const debouncedFetchTenants = debounce(fetchTenants, 300);
+export const debouncedFetchPayments = debounce(fetchPayments, 300);
+export const debouncedFetchMaintenanceRequests = debounce(fetchMaintenanceRequests, 300);
+export const debouncedFetchLeases = debounce(fetchLeases, 300);
+export const debouncedFetchTenantBalances = debounce(fetchTenantBalances, 300);

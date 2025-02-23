@@ -23,12 +23,11 @@ const Sidebar = () => {
                 <ul style={{ listStyle: "none", padding: 0 }}>
                     {user?.role === "Admin" && <li><Link to="/dashboard" style={{ color: "white" }}><FaHome /> Properties</Link></li>}
                     {user?.role === "Admin" && <li><Link to="/tenants" style={{ color: "white" }}><FaUser /> Tenants</Link></li>}
-                    {user?.role === "Tenant"|| "Admin" && <li><Link to="/payments" style={{ color: "white" }}><FaMoneyBill /> Payments</Link></li>}
-                    {user?.role === "Contractor" || "Admin" && <li><Link to="/maintenance" style={{ color: "white" }}><FaTools /> Maintenance</Link></li>}
+                    {(user?.role === "Tenant" || user?.role === "Admin") && <li><Link to="/payments" style={{ color: "white" }}><FaMoneyBill /> Payments</Link></li>}
+                    {(user?.role === "Contractor" || user?.role === "Admin") && <li><Link to="/maintenance" style={{ color: "white" }}><FaTools /> Maintenance</Link></li>}
                     {user?.role === "Admin" && <li><Link to="/dashboard" style={{ color: "white" }}>Admin Dashboard</Link></li>}
                     <li><button onClick={handleLogout} style={{ color: "white", background: "none", border: "none", cursor: "pointer" }}><FaSignOutAlt /> Logout</button></li>
                 </ul>
-
             </nav>
         </div>
     );
