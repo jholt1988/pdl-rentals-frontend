@@ -1,12 +1,20 @@
 import axios from "axios";
 import { getToken } from "./authService";
+import { setup } from "axios-cache-adapter";
+import axiosRetry from "axios-retry";
+import debounce from "lodash.debounce";
 
 const API_URL = "http://localhost:5000/api";
 
-// Axios instance with authentication headers
-const axiosInstance = axios.create({
+// Axios instance with caching and retry mechanisms
+const axiosInstance = setup({
     baseURL: API_URL,
+    cache: {
+        maxAge: 15 * 60 * 1000, // Cache for 15 minutes
+    },
 });
+
+axiosRetry(axiosInstance, { retries: 3 });
 
 axiosInstance.interceptors.request.use(
     (config) => {
@@ -16,13 +24,18 @@ axiosInstance.interceptors.request.use(
         } else {
             delete config.headers.Authorization;
         }
-            
         return config;
     },
     (error) => {
         return Promise.reject(error);
     }
 );
+
+// Batching requests
+const batchRequests = async (requests) => {
+    const response = await axiosInstance.all(requests);
+    return response.map((res) => res.data);
+};
 
 // Property API functions
 export const fetchProperties = async () => {
@@ -63,7 +76,6 @@ export const updateTenant = async (id, tenantData) => {
 export const deleteTenant = async (id) => {
     await axiosInstance.delete(`/tenants/${id}`);
 };
-
 
 // Payment API functions
 export const fetchPayments = async () => {
@@ -139,4 +151,41 @@ export const fetchTenantBalances = async () => {
     return response.data;
 };
 
+// Debouncing requests
+export const debouncedFetchProperties = debounce(fetchProperties, 300);
+export const debouncedFetchTenants = debounce(fetchTenants, 300);
+export const debouncedFetchPayments = debounce(fetchPayments, 300);
+export const debouncedFetchMaintenanceRequests = debounce(fetchMaintenanceRequests, 300);
+export const debouncedFetchLeases = debounce(fetchLeases, 300);
+export const debouncedFetchTenantBalances = debounce(fetchTenantBalances, 300);
 
+// Optimizing data fetching using query parameters
+export const fetchPropertiesWithParams = async (params) => {
+    const response = await axiosInstance.get("/properties", { params });
+    return response.data;
+};
+
+export const fetchTenantsWithParams = async (params) => {
+    const response = await axiosInstance.get("/tenants", { params });
+    return response.data;
+};
+
+export const fetchPaymentsWithParams = async (params) => {
+    const response = await axiosInstance.get("/payments", { params });
+    return response.data;
+};
+
+export const fetchMaintenanceRequestsWithParams = async (params) => {
+    const response = await axiosInstance.get("/maintenance", { params });
+    return response.data;
+};
+
+export const fetchLeasesWithParams = async (params) => {
+    const response = await axiosInstance.get("/leases", { params });
+    return response.data;
+};
+
+export const fetchTenantBalancesWithParams = async (params) => {
+    const response = await axiosInstance.get("/payments/balances", { params });
+    return response.data;
+};
