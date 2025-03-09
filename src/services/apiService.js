@@ -19,6 +19,8 @@ const axiosInstance = axios.create({
 
 axiosRetry(axiosInstance, { retries: 3 });
 
+axiosRetry(axiosInstance, { retries: 3 });
+
 axiosInstance.interceptors.request.use(
     (config) => {
         const token = getToken();
