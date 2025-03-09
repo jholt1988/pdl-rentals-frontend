@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchMaintenanceRequests, createMaintenanceRequest, updateMaintenanceRequest, deleteMaintenanceRequest } from "../../services/apiService";
-
+import "../../theme.css"
 const MaintenanceManager = () => {
     const [requests, setRequests] = useState([]);
     const [formData, setFormData] = useState({ propertyId: "", tenantId: "", contractorId: "", status: "", description: "" });
@@ -58,8 +58,9 @@ const MaintenanceManager = () => {
     };
 
     return (
-        <div>
-            <h2>Manage Maintenance Requests</h2>
+        <div className="container">
+        <div className="card">
+            <h2 className="text-center">Manage Maintenance Requests</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="propertyId" value={formData.propertyId} onChange={handleChange} placeholder="Property ID" required />
                 <input type="text" name="tenantId" value={formData.tenantId} onChange={handleChange} placeholder="Tenant ID" required />
@@ -68,6 +69,7 @@ const MaintenanceManager = () => {
                 <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" required />
                 <button type="submit">{editId ? "Update" : "Add"} Request</button>
             </form>
+            </div>
         </div>
     );
 };

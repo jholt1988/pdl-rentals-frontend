@@ -5,6 +5,8 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Dashboard from "./pages/Dashboard";
 import AuthContext from "./context/AuthContext";
+import GlobalLayout from "./GlobalLayout";
+
 
 const PrivateRoute = React.memo(({ children }) => {
   const { user } = useContext(AuthContext);
@@ -22,10 +24,18 @@ function App() {
         path="/dashboard" 
         element={
           <PrivateRoute>
-            <Dashboard />
+            <GlobalLayout/>
+              
+              
           </PrivateRoute>
         } 
-      />
+        >
+          <Route path="main"
+            element={
+                   <Dashboard/>
+                 }
+          />
+      </Route>
       </Routes>
     </Router>
   );

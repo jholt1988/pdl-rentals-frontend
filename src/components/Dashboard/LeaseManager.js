@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchLeases, createLease, updateLease, deleteLease } from "../../services/apiService";
-
+import "../../theme.css"
 const LeaseManager = () => {
     const [leases, setLeases] = useState([]);
     const [formData, setFormData] = useState({
@@ -74,8 +74,9 @@ const LeaseManager = () => {
     };
 
     return (
-        <div>
-            <h2>Manage Leases</h2>
+        <div className="container">
+        <div className="card">
+            <h2 className="text-center">Manage Leases</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="tenantId" value={formData.tenantId} onChange={handleChange} placeholder="Tenant ID" required />
                 <input type="text" name="propertyId" value={formData.propertyId} onChange={handleChange} placeholder="Property ID" required />
@@ -88,6 +89,7 @@ const LeaseManager = () => {
                 <input type="number" name="rentAmount" value={Number(formData.rentAmount)} onChange={handleChange} placeholder="Rent Per Month" required />
                 <button type="submit">{editId ? "Update" : "Add"} Lease</button>
             </form>
+            </div>
         </div>
     );
 };

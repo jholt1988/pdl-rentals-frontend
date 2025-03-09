@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchTenants, createTenant, updateTenant, deleteTenant, sendPaymentStatement } from "../../services/apiService";
+import "../../theme.css"
 const TenantManager = () => {
     const [tenants, setTenants] = useState([]);
     const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
@@ -65,8 +66,10 @@ const TenantManager = () => {
     };
 
     return (
-        <div>
-            <h2>Manage Tenants</h2>
+        <div className="container">
+            
+        <div className="card">
+            <h2 className="text-center">Manage Tenants</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
                 <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
@@ -101,6 +104,7 @@ const TenantManager = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
     );
 };

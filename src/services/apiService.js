@@ -1,19 +1,19 @@
 import axios from "axios";
 import { getToken } from "./authService";
-import { setupCache } from "axios-cache-adapter";
+import { createCacheAdapter } from "axios-simple-cache-adapter";
 import axiosRetry from "axios-retry";
 import debounce from "lodash.debounce";
 
 const API_URL = "http://localhost:5000/api";
 
 // Axios instance with authentication headers
-const cache = setupCache({
-    maxAge: 15 * 60 * 1000 // Cache for 15 minutes
+const cache = createCacheAdapter({
+    defaultTTL: 15 * 60 * 1000 // Cache for 15 minutes
 });
 
 const axiosInstance = axios.create({
     baseURL: API_URL,
-    adapter: cache.adapter
+    adapter: cache
 });
 
 axiosRetry(axiosInstance, { retries: 3 });
@@ -45,6 +45,12 @@ const debouncedGet = debounce(async (url, config) => {
     const response = await axiosInstance.get(url, config);
     return response.data;
 }, 300);
+
+
+export const getDashboardInfo = async () => {
+    const request = await batchRequests(fetchProperties, fetchTenants, fetchMaintenanceRequests)
+    return request
+}
 
 // Property API functions
 export const fetchProperties = async () => {

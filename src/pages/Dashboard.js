@@ -8,14 +8,15 @@ import MaintenanceManager from "../components/Dashboard/MaintenanceManager";
 import AdminDashboard from "../components/Admin/AdminDashboard";
 import AuthContext  from "../context/AuthContext";   
 import LeaseManager from "../components/Dashboard/LeaseManager";
+import GlobalLayout from "../GlobalLayout";
 
 
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext);
     return (
-        <div style={{ display: "flex" }}>
-            <Sidebar />
+    
+     
             <div style={{ flex: 1, padding: "20px" }}>
                 <h1>Dashboard</h1>
                 {user?.role === "Admin" && <PropertyList />}
@@ -26,7 +27,7 @@ const Dashboard = () => {
                 {(user?.role === "Contractor"|| "Admin") && <MaintenanceManager />}
                 {user?.role === "Admin" && <AdminDashboard />}
             </div>
-        </div>
+        
     );
 };
 

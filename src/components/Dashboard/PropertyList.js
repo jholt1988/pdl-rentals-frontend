@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { fetchProperties } from "../../services/apiService";
 import { getToken } from "../../services/authService";
+import "../../theme.css"
 
 const PropertyList = () => {
     const [properties, setProperties] = useState([]);
 
     useEffect(() => {
-        const fetchProperties = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/api/properties", {
-                    headers: { Authorization: `Bearer ${getToken()}` },
-                });
-                setProperties(response.data);
-            } catch (error) {
-                console.error("Error fetching properties:", error);
-            }
-        };
+       
         fetchProperties();
     }, []);
 
     return (
-        <div>
-            <h2>Properties</h2>
+        <div className="container">
+        <div className="card">
+            <h2 className="text-center">Properties</h2>
             <table border="1" cellPadding="10">
                 <thead>
                     <tr>
@@ -40,6 +34,7 @@ const PropertyList = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
     );
 };

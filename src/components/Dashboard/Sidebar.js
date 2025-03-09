@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaHome, FaUser, FaMoneyBill, FaTools, FaSignOutAlt } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 import { logoutUser } from "../../services/authService";
+import "../../theme.css"
 
 const Sidebar = () => {
     const { user, setUser } = useContext(AuthContext);

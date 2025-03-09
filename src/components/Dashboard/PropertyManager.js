@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchProperties, createProperty, updateProperty, deleteProperty } from "../../services/apiService";
+import "../../theme.css"
 
 const PropertyManager = () => {
     const [properties, setProperties] = useState([]);
     const [formData, setFormData] = useState({ address: "", units: 1 });
     const [editId, setEditId] = useState(null);
-
+   
     useEffect(() => {
         loadProperties();
     }, []);
@@ -52,8 +53,9 @@ const PropertyManager = () => {
     };
 
     return (
-        <div>
-            <h2>Manage Properties</h2>
+        <div className="container">
+        <div className="card">
+            <h2 className="text-center">Manage Properties</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Address" required />
                 <input type="number" name="units" value={formData.units} onChange={handleChange} placeholder="Number of Units" required />
@@ -82,6 +84,7 @@ const PropertyManager = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
     );
 };
