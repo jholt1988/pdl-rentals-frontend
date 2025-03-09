@@ -8,25 +8,16 @@ const PaymentManager = () => {
     const [editId, setEditId] = useState(null);
 
     useEffect(() => {
-        loadPayments();
-        loadBalances();
+        loadData();
     }, []);
 
-    const loadPayments = async () => {
+    const loadData = async () => {
         try {
-            const data = await fetchPayments();
-            setPayments(data);
+            const [paymentsData, balancesData] = await Promise.all([fetchPayments(), fetchTenantBalances()]);
+            setPayments(paymentsData);
+            setBalances(balancesData);
         } catch (error) {
-            console.error("Error loading payments:", error);
-        }
-    };
-
-    const loadBalances = async () => {
-        try {
-            const data = await fetchTenantBalances();
-            setBalances(data);
-        } catch (error) {
-            console.error("Error loading balances:", error);
+            console.error("Error loading data:", error);
         }
     };
 
@@ -51,8 +42,7 @@ const PaymentManager = () => {
             }
             setFormData({ leaseId: "", amount: "", date: "", method: "" });
             setEditId(null);
-            loadPayments();
-            loadBalances();
+            loadData();
         } catch (error) {
             console.error("Error saving payment:", error);
         }
@@ -66,8 +56,7 @@ const PaymentManager = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this payment?")) {
             await deletePayment(id);
-            loadPayments();
-            loadBalances();
+            loadData();
         }
     };
 

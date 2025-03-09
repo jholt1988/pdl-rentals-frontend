@@ -10,8 +10,6 @@ import AuthContext  from "../context/AuthContext";
 import LeaseManager from "../components/Dashboard/LeaseManager";
 import GlobalLayout from "../GlobalLayout";
 
-
-
 const Dashboard = () => {
     const {user} = useContext(AuthContext);
     return (
@@ -23,8 +21,8 @@ const Dashboard = () => {
                 {user?.role === "Admin" && <PropertyManager />}
                 {user?.role === "Admin" && <TenantManager />}
                 {user?.role === "Admin" && <LeaseManager />}
-                {(user?.role === "Tenant" || "Admin") && <PaymentManager />}
-                {(user?.role === "Contractor"|| "Admin") && <MaintenanceManager />}
+                {user?.role === "Admin" && <PaymentManager />}
+                {user?.role === "Admin" && <MaintenanceManager />}
                 {user?.role === "Admin" && <AdminDashboard />}
             </div>
         
