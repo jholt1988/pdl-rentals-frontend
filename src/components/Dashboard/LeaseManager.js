@@ -10,9 +10,9 @@ const LeaseManager = () => {
         rentAmount: "",
         deposit: "",
         petDeposit: "",
-        utilities:" ",
+        utilities: "",
         startDate: "",
-        documentUrl:"",
+        documentUrl: "",
         endDate: "",
     });
     const [editId, setEditId] = useState(null);
@@ -42,7 +42,7 @@ const LeaseManager = () => {
             } else {
                 await createLease(formData);
             }
-            setFormData({ tenantId: "", propertyId: "", unitNumber: "", rentAmount: "", deposit: "",documentUrl:"", petDeposit: "", utilities:" ", startDate: "", endDate: "" });
+            setFormData({ tenantId: "", propertyId: "", unitNumber: "", rentAmount: "", deposit: "", documentUrl: "", petDeposit: "", utilities: "", startDate: "", endDate: "" });
             setEditId(null);
             loadLeases();
         } catch (error) {

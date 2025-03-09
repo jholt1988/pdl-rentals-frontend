@@ -33,7 +33,8 @@ const MaintenanceManager = () => {
             }
             setFormData({ propertyId: "", tenantId: "", contractorId: "", status: "", description: "" });
             setEditId(null);
-            loadRequests();
+            const data = await fetchMaintenanceRequests();
+            setRequests(data);
         } catch (error) {
             console.error("Error saving request:", error);
         }
@@ -53,7 +54,8 @@ const MaintenanceManager = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this request?")) {
             await deleteMaintenanceRequest(id);
-            loadRequests();
+            const data = await fetchMaintenanceRequests();
+            setRequests(data);
         }
     };
 
