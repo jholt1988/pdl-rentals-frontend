@@ -1,24 +1,24 @@
-/* Global Styling */
-body {
-    font-family: "Arial", sans-serif;
-    background-color: #f4f7fc;
-    margin: 0;
-    padding: 0;
-}
-
-/* Dashboard Container */
+/* General Dashboard Styling */
 .dashboard-container {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
-    background: white;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 /* Section Styling */
 .dashboard-section {
-    background: #ffffff;
+    background: white;
     margin-bottom: 15px;
     padding: 15px;
     border-radius: 6px;
@@ -26,7 +26,7 @@ body {
 }
 
 .dashboard-section h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #007bff;
     border-bottom: 2px solid #007bff;
     padding-bottom: 5px;
@@ -38,41 +38,16 @@ body {
     list-style: none;
     padding: 10px;
     background: #eef2f7;
-    border-radius: 5px;
+    border-radius: 4px;
     margin-bottom: 5px;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .dashboard-item:hover {
     background: #d6e0eb;
 }
 
-/* Buttons */
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Forms & Inputs */
-input {
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-}
-
-/* Loading and Error Messages */
+/* Loading and Error Styling */
 .loading {
     text-align: center;
     font-size: 1.2rem;
@@ -92,7 +67,7 @@ input {
     }
 
     .dashboard-section h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .dashboard-item {

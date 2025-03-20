@@ -6,6 +6,7 @@ import Register from "./components/Auth/Register";
 import Dashboard from "./pages/Dashboard";
 import AuthContext from "./context/AuthContext";
 import GlobalLayout from "./GlobalLayout";
+import  ProtectedRoute  from "./routes/protectedRoutes";
 
 
 const PrivateRoute = React.memo(({ children }) => {
@@ -19,22 +20,11 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
+        
         <Route path="/register" element={<Register />} />
-      <Route 
-        path="/dashboard" 
-        element={
-          <PrivateRoute>
-            <GlobalLayout/>
-              
-              
-          </PrivateRoute>
-        } 
-        >
-          <Route path="main"
-            element={
-                   <Dashboard/>
-                 }
-          />
+        <Route path="/dashboard" element={<ProtectedRoute />} >
+          <Route path="/dashboard" element={<GlobalLayout />}/>
+      <Route path="/dashboard" element={<Dashboard />}/>
       </Route>
       </Routes>
     </Router>

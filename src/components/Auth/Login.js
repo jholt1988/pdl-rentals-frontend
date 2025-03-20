@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import { loginUser } from "../../services/authService";
+import { apiService } from "../../services/apiService";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await loginUser({ email, password });
+            const data = await apiService.login( email, password );
             setUser(data.user);
             toast.success("Login successful!");
             navigate("/dashboard");

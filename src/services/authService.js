@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/users"; // Change this if your backend is hosted
+const API_URL = process.env.REACT_APP_AUTH_URL || "http://localhost:5000/api"; // Change this if your backend is hosted
 
 // Register User
 export const registerUser = async (userData) => {
@@ -15,6 +15,7 @@ export const registerUser = async (userData) => {
 };
 
 // Login User
+
 export const loginUser = async (userData) => {
     try {
         const response = await axios.post(`${API_URL}/login`, userData);
@@ -29,6 +30,20 @@ export const loginUser = async (userData) => {
 // Logout User
 export const logoutUser = () => {
     localStorage.removeItem("token");
+}
+export const useAuth = () => {
+    const login = async (credentials) => {
+        const response = await loginUser(credentials);
+        document.cookie = `token=${response.token}; Secure; HttpOnly; Path=/`;
+        return response;
+    };
+
+    const logout = () => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.reload();
+    };
+
+    return { login, logout };
 };
 
 // Get Token

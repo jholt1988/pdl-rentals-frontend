@@ -5,12 +5,27 @@ import { getToken } from "../../services/authService";
 import "../../theme.css"
 
 const PropertyList = () => {
-    const [properties, setProperties] = useState([]);
+    const[properties, setProperties] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-       
-        fetchProperties();
+        const getProperties = async () => {
+            try {
+                const data = await fetchProperties();
+                setProperties(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        getProperties();
     }, []);
+
+    if (loading) return <p>Loading properties...</p>;
+    if (error) return <p>Error: {error}</p>;
+
 
     return (
         <div className="container">
