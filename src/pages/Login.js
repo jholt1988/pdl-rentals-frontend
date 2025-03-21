@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiService } from "../services/apiService";
+import * as authService from "../services/authService";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ const Login = () => {
         setError(null);
 
         try {
-            const response = await apiService.login( email, password );
+            const response = await authService.loginUser( email, password );
             localStorage.setItem("token", response.data.accessToken);
             localStorage.setItem("refresh_token", response.data.refreshToken);
             navigate("/dashboard");
