@@ -21,11 +21,17 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<ProtectedRoute />} >
-          <Route path="/dashboard" element={<GlobalLayout />}/>
-      <Route path="/dashboard" element={<Dashboard />}/>
-      </Route>
+        <Rout path="/register" element={<Register />} />
+        <ProtectedRoute path="/dashboard" element={
+          <GlobalLayout>
+            <Route path="/dashboard" element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }/>
+        </GlobalLayout>}/>
+        
+    
       </Routes>
     </Router>
   );
