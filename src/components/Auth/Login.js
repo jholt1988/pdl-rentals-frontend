@@ -10,11 +10,14 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const formData = { email, password };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await authService.loginUser( email, password );
+            const userEmail = formData.email
+            const password = formData.password
+            const data = await authService.loginUser({ userEmail, password }); ;
             setUser(data.user);
             toast.success("Login successful!");
             navigate("/dashboard");
