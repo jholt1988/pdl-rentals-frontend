@@ -184,3 +184,38 @@ export const sendTenantStatementApi = async (payload) => {
         throw error;
     }
 };
+
+export const fetchTenantStatements = async (tenantId) => {
+    const response = await request("get", `/ledger/statements/${tenantId}`);
+    return response.data;
+}
+
+export const fetchStatement = async (statementId) => {
+    const response = await request("get", `/ledger/statement/${statementId}`);
+    return response.data;
+}
+
+export const fetchAllStatements = async () => {
+    const response = await request("get", `/ledger/statements`);
+    return response.data;
+}
+
+export const fetchStatementPdf = async (statementId) => {
+    const response = await request("get", `/ledger/statement-pdf/${statementId}`);
+    return response.data;
+}
+
+export const fetchNotifications = async () => {
+    const response = await request("get", `/notifications`);
+    return response.data;
+}   
+
+export const markNotificationAsRead = async (notificationId) => {
+    const response = await request("put", `/notifications/${notificationId}`);
+    return response.data;
+}
+
+export const fetchReports = async () => {    
+    const response = await request("get", `/reports`);
+    return response.data;
+}
