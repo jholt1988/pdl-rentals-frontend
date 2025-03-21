@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiService } from "../../services/apiService";
+import * as authService from "../../services/authService";
 import { toast } from "react-toastify";
+import { a } from "framer-motion/client";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Register = () => {
             return;
         }
         try {
-            await apiService.register(formData);
+            await authService.registerUser(formData);
             toast.success("Registration successful!");
             navigate("/login");
         } catch (error) {
