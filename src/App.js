@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         
-        <Rout path="/register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
         <ProtectedRoute path="/dashboard" element={
           <GlobalLayout>
             <Route path="/dashboard" element={
