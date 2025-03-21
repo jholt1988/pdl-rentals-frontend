@@ -22,14 +22,16 @@ function App() {
         <Route path="/login" element={<Login />} />
         
         <Route path="/register" element={<Register />} />
-        <ProtectedRoute path="/dashboard" element={
-          <GlobalLayout>
+      
+          
             <Route path="/dashboard" element={
-              <PrivateRoute>
-                <Dashboard />
+          <PrivateRoute>
+            <GlobalLayout>
+              <Dashboard />
+            </GlobalLayout>
               </PrivateRoute>
             }/>
-        </GlobalLayout>}/>
+     
         
     
       </Routes>
