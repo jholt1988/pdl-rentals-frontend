@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../services/authService";
+import { apiService } from "../../services/apiService";
 import { toast } from "react-toastify";
 
 const Register = () => {
@@ -23,7 +23,7 @@ const Register = () => {
             return;
         }
         try {
-            await registerUser(formData);
+            await apiService.register(formData);
             toast.success("Registration successful!");
             navigate("/login");
         } catch (error) {
