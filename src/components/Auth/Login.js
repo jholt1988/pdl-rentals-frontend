@@ -4,20 +4,20 @@ import AuthContext from "../../context/AuthContext";
 import * as apiService from "../../services/apiService";
 import * as authService from "../../services/authService";
 import { toast } from "react-toastify";
+import { em } from "framer-motion/client";
 
 const Login = () => {
     const { setUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const formData = { email, password };
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const userEmail = formData.email
-            const password = formData.password
-            const data = await authService.loginUser({ userEmail, password }); ;
+         
+            const data = await authService.loginUser({ email:email, password:password }); ;
             setUser(data.user);
             toast.success("Login successful!");
             navigate("/dashboard");
