@@ -1,23 +1,10 @@
-# Build stage
-FROM node:18-alpine as builder
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+FROM node:lts-alpine
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
 COPY . .
-RUN npm run build
-
-# Serve via Nginx
-FROM nginx:alpine
-
-# Remove default config
-RUN rm /etc/nginx/conf.d/default.conf
-
-# Copy custom config (we’ll create it below)
-COPY nginx.conf /etc/nginx/conf.d
-
-# Copy built files to Nginx’s public dir
-COPY --from=builder /app/build /usr/share/nginx/html
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+RUN chown -R node /usr/src/app
+USER node
+CMD ["npm", "start"]
