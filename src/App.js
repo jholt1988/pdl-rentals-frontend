@@ -22,18 +22,16 @@ function App() {
         <Route path="/login" element={<Login />} />
         
         <Route path="/register" element={<Register />} />
-      
-          
+             
             <Route path="/dashboard" element={
-          <PrivateRoute>
+          <ProtectedRoute>
             
               <Dashboard />
             
-              </PrivateRoute>
+             </ProtectedRoute>
             }/>
      
         
-    
       </Routes>
     </Router>
   );

@@ -11,8 +11,9 @@ const Register = () => {
         email: "",
         password: "",
         confirmPassword: "",
+        role:""
     });
-    const { name, email, password, confirmPassword } = formData;
+    
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -24,7 +25,8 @@ const Register = () => {
             return;
         }
         try {
-            await authService.registerUser(formData);
+            const userData = await authService.registerUser(formData);
+            console.log(userData)
             toast.success("Registration successful!");
             navigate("/login");
         } catch (error) {
@@ -39,19 +41,19 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name:</label>
-                    <input type="text" name="name" value={name} onChange={handleChange} required />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} required />
                 </div>
                 <div>
                     <label>Email:</label>
-                    <input type="email" name="email" value={email} onChange={handleChange} required />
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
                 </div>
                 <div>
                     <label>Password:</label>
-                    <input type="password" name="password" value={password} onChange={handleChange} required />
+                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
                 </div>
                 <div>
                     <label>Confirm Password:</label>
-                    <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleChange} required />
+                    <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
                 </div>
                 <select name="role" value={formData.role} onChange={handleChange} required>
                     <option value="Tenant">Tenant</option>
