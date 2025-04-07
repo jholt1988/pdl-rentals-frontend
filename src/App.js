@@ -26,9 +26,9 @@ function App() {
           
             <Route path="/dashboard" element={
           <PrivateRoute>
-            <GlobalLayout>
+            
               <Dashboard />
-            </GlobalLayout>
+            
               </PrivateRoute>
             }/>
      
