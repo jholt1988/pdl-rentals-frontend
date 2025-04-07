@@ -18,7 +18,7 @@ const Login = () => {
         try {
          
             const data = await authService.loginUser({ email:email, password:password }); ;
-            setUser(data.user);
+            setUser(data);
             toast.success("Login successful!");
             navigate("/dashboard");
         } catch (error) {

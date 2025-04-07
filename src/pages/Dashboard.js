@@ -4,6 +4,7 @@ import Sidebar from "../components/Dashboard/Sidebar";
 import { motion } from "framer-motion";
 import * as apiService from "../services/apiService";
 import "./Dashboard.css";
+import  GlobalLayout from "../GlobalLayout";
 import LogoutButton from "../components/Buttons/LogoutButton";
 
 const { fetchLeases,
@@ -52,6 +53,7 @@ const Dashboard = () => {
     if (error) return <p className="error">Error: {error}</p>;
 
     return (
+       <GlobalLayout>
         <div className="dashboard-container">
             <DarkModeToggle />
             <Sidebar setActiveSection={setActiveSection} />
@@ -90,6 +92,7 @@ const Dashboard = () => {
             </motion.div>
             <LogoutButton />
         </div>
+       </GlobalLayout>
     );
 };
 
