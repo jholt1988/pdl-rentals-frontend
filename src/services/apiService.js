@@ -3,7 +3,7 @@ import { getToken } from "./authService";
 import { setupCache } from "axios-cache-interceptor";
 import axiosRetry from "axios-retry";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+const API_URL = process.env.REACT_APP_API_URL || "http://18.218.213.59:5000/api";
 
 const Axios = axios.create({ baseURL: API_URL, timeout: 5000 });
 const axiosInstance = setupCache(Axios, { maxAge: 15 * 60 * 1000 });
