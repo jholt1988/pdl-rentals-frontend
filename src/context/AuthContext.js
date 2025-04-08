@@ -13,10 +13,13 @@ export const AuthProvider = ({ children }) => {
             const token = getToken();
             if (token) {
                 try {
-                    const response = await axios.get("/api/users/me", {
+                    const response = await axios.get(
+                      `/api/users/me/${user._id}`,
+                      {
                         headers: { Authorization: `Bearer ${token}` },
-                    });
-                    setUser(response.data);
+                      }
+                    );
+                    setUser(response.data.user);
                 } catch (error) {
                     logoutUser();
                     setUser(null);

@@ -204,9 +204,12 @@ export const fetchStatementPdf = async (statementId) => {
     const response = await request("get", `/ledger/statement-pdf/${statementId}`);
     return response.data;
 }
-
-export const fetchNotifications = async () => {
-    const response = await request("get", `/notifications`);
+export const createNotification = async (notificationData) => {
+     const response = await request("post", "/notifications", notificationData);
+    return response.data;
+}   
+export const fetchNotifications = async (id) => {
+    const response = await request("get", `/notifications/user/${id}`);
     return response.data;
 }   
 
@@ -216,6 +219,6 @@ export const markNotificationAsRead = async (notificationId) => {
 }
 
 export const fetchReports = async () => {    
-    const response = await request("get", `/reports`);
+    const response = await request("get", `/reports/summary`);
     return response.data;
 }

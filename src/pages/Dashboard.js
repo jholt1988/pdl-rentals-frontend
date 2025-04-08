@@ -6,6 +6,8 @@ import * as apiService from "../services/apiService";
 import "./Dashboard.css";
 import  GlobalLayout from "../GlobalLayout";
 import LogoutButton from "../components/Buttons/LogoutButton";
+import { useContext } from "react";
+import  AuthContext  from "../context/AuthContext";
 
 const { fetchLeases,
     fetchProperties,
@@ -25,6 +27,7 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activeSection, setActiveSection] = useState("leases");
+    const {user} = useContext(AuthContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +35,7 @@ const Dashboard = () => {
                 const leaseData = await fetchLeases();
                 const paymentData = await fetchPayments();
                 const maintenanceData = await fetchMaintenanceRequests();
-                const notificationData = await fetchNotifications();
+                const notificationData = await fetchNotifications(user.id);
                 const reportData = await fetchReports();
 
                 setLeases(leaseData);
@@ -53,7 +56,7 @@ const Dashboard = () => {
     if (error) return <p className="error">Error: {error}</p>;
 
     return (
-       <GlobalLayout>
+    
         <div className="dashboard-container">
             <DarkModeToggle />
             <Sidebar setActiveSection={setActiveSection} />
@@ -92,7 +95,7 @@ const Dashboard = () => {
             </motion.div>
             <LogoutButton />
         </div>
-       </GlobalLayout>
+     
     );
 };
 

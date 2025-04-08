@@ -18,6 +18,16 @@ const Sidebar = ({ setActiveSection }) => {
                 <FiMenu />
             </button>
             <ul>
+                <li data-tip="Dashboard" onClick={() => setActiveSection("dashboard")}>
+                    <FiHome /> {!isCollapsed && "Dashboard"}
+                </li>
+                <li data-tip="Properties" onClick={() => setActiveSection("properties")}>
+                    <FiHome /> {!isCollapsed && "Properties"}
+                </li>
+                <li data-tip="Tenants" onClick={() => setActiveSection("tenants")}>
+                    <FiHome /> {!isCollapsed && "Tenants"}
+                </li>   
+
                 <li data-tip="Leases" onClick={() => setActiveSection("leases")}>
                     <FiHome /> {!isCollapsed && "Leases"}
                 </li>
@@ -26,6 +36,9 @@ const Sidebar = ({ setActiveSection }) => {
                 </li>
                 <li data-tip="Maintenance" onClick={() => setActiveSection("maintenance")}>
                     <FiTool /> {!isCollapsed && "Maintenance"}
+                </li>   
+                <li data-tip="Contractors" onClick={() => setActiveSection("contractors")}>
+                    <FiHome /> {!isCollapsed && "Contractors"}
                 </li>
                 <li data-tip="Notifications" onClick={() => setActiveSection("notifications")}>
                     <FiBell /> {!isCollapsed && "Notifications"}
@@ -33,6 +46,13 @@ const Sidebar = ({ setActiveSection }) => {
                 <li data-tip="Reports" onClick={() => setActiveSection("reports")}>
                     <FiBarChart2 /> {!isCollapsed && "Reports"}
                 </li>
+                <li data-tip="Admin Dashboard" onClick={() => setActiveSection("admin-dashboard")}>
+                    <FiHome /> {!isCollapsed && "Admin Dashboard"}
+                </li>
+                <li data-tip="Settings" onClick={() => setActiveSection("settings")}>
+                    <FiHome /> {!isCollapsed && "Settings"}
+                </li>
+
             </ul>
             <Tooltip place="right" effect="solid" />
         </motion.div>
