@@ -47,7 +47,7 @@ const Sidebar = ({ setActiveSection }) => {
                     <FiBarChart2 /> {!isCollapsed && "Reports"}
                 </li>
                 <li data-tip="Admin Dashboard" onClick={() => setActiveSection("admin-dashboard")}>
-                    <FiHome /> {!isCollapsed && "Admin Dashboard"}
+             s       <FiHome /> {!isCollapsed && "Admin Dashboard"}
                 </li>
                 <li data-tip="Settings" onClick={() => setActiveSection("settings")}>
                     <FiHome /> {!isCollapsed && "Settings"}

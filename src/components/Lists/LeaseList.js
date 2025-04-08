@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchLeases, createLease, updateLease, deleteLease } from "./apiService";
+import { fetchLeases, createLease, updateLease, deleteLease } from "../../services/apiService";
 
 const LeasesList = () => {
     const [leases, setLeases] = useState([]);

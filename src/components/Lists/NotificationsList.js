@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchNotifications, createNotification, markNotificationAsRead, deleteNotification } from "./apiService";
+import {
+  fetchNotifications,
+  createNotification,
+  markNotificationAsRead,
+  deleteNotification,
+} from "../../services/apiService";
 
 const NotificationsList = () => {
     const [notifications, setNotifications] = useState([]);

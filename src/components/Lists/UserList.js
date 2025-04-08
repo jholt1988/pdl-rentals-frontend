@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchUsers, createUser, updateUser, deleteUser } from "./apiService";
+import { fetchUsers, createUser, updateUser, deleteUser } from "../../services/apiService";
 
 const UsersList = () => {
     const [users, setUsers] = useState([]);

@@ -35,7 +35,7 @@ const Dashboard = () => {
                 const leaseData = await fetchLeases();
                 const paymentData = await fetchPayments();
                 const maintenanceData = await fetchMaintenanceRequests();
-                const notificationData = await fetchNotifications(user.id);
+                const notificationData = user ? await fetchNotifications(user.id) : [];
                 const reportData = await fetchReports();
 
                 setLeases(leaseData);
@@ -67,6 +67,40 @@ const Dashboard = () => {
                 transition={{ duration: 0.5 }}
                 className="dashboard-content"
             >
+                {activeSection === "properties" && (
+                    <div className="dashboard-card"><h3>Properties</h3><ul>{properties.map((property) => (
+                        <li key={property.id} className="dashboard-item">{`${property.address} - ${property.status}`}</li>
+                    ))}</ul></div>
+                )}
+                {activeSection === "tenants" && (
+                    <div className="dashboard-card"><h3>Tenants</h3><ul>{users.map((user) => (
+                        <li key={user.id} className="dashboard-item">{`${user.name} - ${user.email}`}</li>
+                    ))}</ul></div>
+                )}
+                {activeSection === "contractors" && (
+                    <div className="dashboard-card"><h3>Contractors</h3><ul>{users.map((user) => (  <li key={user.id} className="dashboard-item">{`${user.name} - ${user.email}`}</li>
+                    ))}</ul></div>
+                )}
+                {activeSection === "admin-dashboard" && (
+                    <div className="dashboard-card"><h3>Admin Dashboard</h3><p>Admin-specific content goes here.</p></div>
+                )} 
+                {activeSection === "settings" && (      
+                        <div className="dashboard-card"><h3>Settings</h3><p>Settings-specific content goes here.</p></div>
+                )} 
+                {activeSection === "dashboard" && (
+                    <div className="dashboard-card"><h3>Dashboard</h3><p>Dashboard-specific content goes here.</p></div>
+                )}
+                {activeSection === "notifications" && ( 
+                    <div className="dashboard-card"><h3>Notifications</h3><ul>{notifications.map((notification) => (
+                        <li key={notification.id} className="dashboard-item">{`${notification.type}: ${notification.message}`}</li>
+                    ))}</ul></div>
+                )} 
+                {activeSection === "reports" && (
+                    <div className="dashboard-card"><h3>Reports</h3><ul>{reports.map((report) => (  
+                        <li key={report.id} className="dashboard-item">{report.title}</li>
+                    ))}</ul></div>
+                )} 
+
                 {activeSection === "leases" && (
                     <div className="dashboard-card"><h3>Leases</h3><ul>{leases.map((lease) => (
                         <li key={lease.id} className="dashboard-item">{`${lease.property} - ${lease.tenant} - ${lease.status}`}</li>

@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import { fetchTenants } from "../../services/apiService"; // Adjust the import path as necessary
 const TenantsList = () => {
     const [tenants, setTenants] = useState([]);
     const [loading, setLoading] = useState(true);

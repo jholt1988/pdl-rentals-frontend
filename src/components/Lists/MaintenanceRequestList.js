@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchMaintenanceRequests } from "../..services/apiService";
+import { fetchMaintenanceRequests } from "../../services/apiService";
 
 const MaintenanceRequestsList = () => {
     const [requests, setRequests] = useState([]);

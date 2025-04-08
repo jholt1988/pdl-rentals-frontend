@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchFinancialReports, fetchRentalTrends, fetchMaintenanceStats, generateReport } from "./apiService";
+import { fetchFinancialReports, fetchRentalTrends, fetchMaintenanceStats, generateReport } from "../../services/apiService";
 import { Bar, Line, Pie } from "react-chartjs-2";
 
 const ReportsDashboard = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchDocuments, uploadDocument, downloadDocument, deleteDocument } from "./apiService";
+import { fetchDocuments, uploadDocument, downloadDocument, deleteDocument } from "../../services/apiService"; // Adjust the import path as necessary
 
 const DocumentsList = () => {
     const [documents, setDocuments] = useState([]);

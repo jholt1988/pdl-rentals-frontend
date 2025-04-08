@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import { fetchPayments } from "../../services/apiService"; // Adjust the import path as necessary
 const PaymentsList = () => {
     const [payments, setPayments] = useState([]);
     const [loading, setLoading] = useState(true);

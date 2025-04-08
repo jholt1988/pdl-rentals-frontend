@@ -222,3 +222,112 @@ export const fetchReports = async () => {
     const response = await request("get", `/reports/summary`);
     return response.data;
 }
+
+export const fetchReport = async (reportId) => {    
+    const response = await request("get", `/reports/${reportId}`);
+    return response.data;
+}
+export const fetchReportPdf = async (reportId) => {    
+    const response = await request("get", `/reports/pdf/${reportId}`);
+    return response.data;
+}   
+export const fetchReportCsv = async (reportId) => {    
+    const response = await request("get", `/reports/csv/${reportId}`);
+    return response.data;
+}
+
+export const fetchReportSummary = async () => {
+    const response = await request("get", `/reports/summary`);
+    return response.data;
+}
+export const fetchReportSummaryPdf = async () => {
+    const response = await request("get", `/reports/summary-pdf`);
+    return response.data;
+}
+export const fetchReportSummaryCsv = async () => {
+    const response = await request("get", `/reports/summary-csv`);
+    return response.data;
+}
+export const fetchReportSummaryXlsx = async () => {
+    const response = await request("get", `/reports/summary-xlsx`);
+    return response.data;
+}
+export const fetchReportSummaryDocx = async () => {
+    const response = await request("get", `/reports/summary-docx`);
+    return response.data;
+}
+export const fetchReportSummaryPptx = async () => {
+    const response = await request("get", `/reports/summary-pptx`);
+    return response.data;
+}
+export const fetchReportSummaryTxt = async () => {
+    const response = await request("get", `/reports/summary-txt`);
+    return response.data;
+}
+export const fetchReportSummaryJson = async () => {
+    const response = await request("get", `/reports/summary-json`);
+    return response.data;
+}   
+export const uploadDocument = async (documentData) => {
+    const response = await request("post", "/documents", documentData);
+    return response.data;
+}
+export const fetchDocuments = async () => {
+    const response = await request("get", "/documents");
+    return response.data;
+}
+export const downloadDocument = async (documentId) => {
+    const response = await request("get", `/documents/${documentId}`);
+    return response.data;
+}
+
+export const deleteDocument = async (documentId) => {
+    const response = await request("delete", `/documents/${documentId}`);
+    return response.data;
+}
+
+export const fetchExpenses = async () => {
+    const response = await request("get", "/expenses");
+    return response.data;
+}
+
+export const createExpense = async (expenseData) => {
+    const response = await request("post", "/expenses", expenseData);
+    return response.data;
+}
+
+export const updateExpense = async (expenseId, expenseData) => {
+    const response = await request("put", `/expenses/${expenseId}`, expenseData);
+    return response.data;
+}
+export const deleteExpense = async (expenseId) => {
+    const response = await request("delete", `/expenses/${expenseId}`);
+    return response.data;
+}
+
+export const deleteNotification = async (notificationId) => {
+    const response = await request("delete", `/notifications/${notificationId}`);
+    return response.data;
+}
+
+export const fetchFinancialReports = async () => {  
+    const response = await request("get", "/reports/financial");
+    return response.data;
+}
+
+export const fetchRentalTrends = async () => {  
+    const response = await request("get", "/reports/rental-trends");
+    return response.data;
+}
+export const fetchMaintenanceStats = async () => {  
+    const response = await request("get", "/reports/maintenance-stats");
+    return response.data;
+}       
+export const fetchExpenseStats = async () => {
+    const response = await request("get", "/reports/expense-stats");
+    return response.data;
+}
+export const generateReport = async (reportType) => {
+    const response = await request("post", `/reports/generate/${reportType}`);
+    return response.data;
+}

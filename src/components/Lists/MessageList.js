@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchConversations, sendMessage, markMessageAsRead, deleteMessage } from "./apiService";
+import { fetchConversations, sendMessage, markMessageAsRead, deleteMessage } from "../../services/apiService";
 
 const MessagesList = () => {
     const [conversations, setConversations] = useState([]);
