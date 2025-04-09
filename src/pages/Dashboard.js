@@ -59,7 +59,7 @@ const Dashboard = () => {
     
         <div className="dashboard-container">
             <DarkModeToggle />
-            <Sidebar setActiveSection={setActiveSection} />
+            
             <h2 className="dashboard-title">Dashboard</h2>
             <motion.div
                 initial={{ opacity: 0 }}

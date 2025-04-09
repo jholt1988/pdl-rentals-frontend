@@ -7,21 +7,18 @@ import Dashboard from "./pages/Dashboard";
 import AuthContext from "./context/AuthContext";
 import GlobalLayout from "./GlobalLayout";
 import ProtectedRoute from "./routes/protectedRoutes";
-import PropertyList from "./components/Lists/PropertyList";
-import TenantList from "./components/Lists/TenantList";
-import PaymentsList from "./components/Lists/PaymentsList"; 
-import ContractorsList  from "./components/Lists/ContractorsList";
-import ExpenseList from "./components/Lists/ExpenseList"; 
+import PaymentsList from "./features/payments/PaymentsList";
+import ContractorsList from "./components/Lists/ContractorsList";
+import ExpenseList from "./components/Lists/ExpenseList";
 import MaintenanceRequestList from "./components/Lists/MaintenanceRequestList";
-import LeaseList from "./components/Lists/LeaseList";
 
-import NotificationsList from "./components/Lists/NotificationsList"; 
-import PropertyManager from "./components/Dashboard/PropertyManager";
-import LeaseManager from "./components/Dashboard/LeaseManager";
-import TenantManager from "./components/Dashboard/TenantManager";
-import DocumentsList from "./components/Lists/DocumentsList"; 
+import NotificationsList from "./components/Lists/NotificationsList";
+import PropertyManager from "./featuresuhyj/properties/PropertyManager";
+import LeaseManager from "./features/leases/LeaseManager";
+import TenantManager from "./features/tenantsTenantManager";
 import "./theme.css";
-import ReportsDashboard from "./components/Dashboard/ReportsDashboard";
+import ReportsDashboard from "./features/reports/ReportsDashboard";
+
 
 
 const PrivateRoute = React.memo(({ children }) => {
@@ -67,9 +64,9 @@ function App() {
         <Route
           path="/payments"
           element={
-            <ProtectedRoute>
+            
               <PaymentsList />
-            </ProtectedRoute>
+            
           }
         />
         <Route

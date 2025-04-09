@@ -3,7 +3,7 @@ import {Tooltip} from "react-tooltip";
 import "./Sidebar.css";
 import { motion } from "framer-motion";
 import { FiHome, FiDollarSign, FiTool, FiBell, FiBarChart2, FiMenu } from "react-icons/fi";
-
+import  {NavLink } from "react-router-dom";
 const Sidebar = ({ setActiveSection }) => {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -19,38 +19,38 @@ const Sidebar = ({ setActiveSection }) => {
             </button>
             <ul>
                 <li data-tip="Dashboard" onClick={() => setActiveSection("dashboard")}>
-                    <FiHome /> {!isCollapsed && "Dashboard"}
+                  <NavLink to="/dashboard">  <FiHome /> {!isCollapsed && "Dashboard"} </NavLink>
                 </li>
                 <li data-tip="Properties" onClick={() => setActiveSection("properties")}>
-                    <FiHome /> {!isCollapsed && "Properties"}
+                   <NavLink to={"/properties"}><FiHome /> {!isCollapsed && "Properties"} </NavLink>
                 </li>
                 <li data-tip="Tenants" onClick={() => setActiveSection("tenants")}>
-                    <FiHome /> {!isCollapsed && "Tenants"}
+                  <NavLink to={"/tenants"}>  <FiHome /> {!isCollapsed && "Tenants"} </NavLink>
                 </li>   
 
                 <li data-tip="Leases" onClick={() => setActiveSection("leases")}>
-                    <FiHome /> {!isCollapsed && "Leases"}
+                   <NavLink to={"/leases"}>  <FiHome /> {!isCollapsed && "Leases"} </NavLink>
                 </li>
                 <li data-tip="Payments" onClick={() => setActiveSection("payments")}>
-                    <FiDollarSign /> {!isCollapsed && "Payments"}
+                   <NavLink to={"/payments"}> <FiDollarSign /> {!isCollapsed && "Payments"} </NavLink>
                 </li>
                 <li data-tip="Maintenance" onClick={() => setActiveSection("maintenance")}>
-                    <FiTool /> {!isCollapsed && "Maintenance"}
-                </li>   
+                   <NavLink to={"/maintenance"}> <FiTool /> {!isCollapsed && "Maintenance"} </NavLink>
+                </li>
                 <li data-tip="Contractors" onClick={() => setActiveSection("contractors")}>
-                    <FiHome /> {!isCollapsed && "Contractors"}
+                   <NavLink to={"/contractors"}> <FiHome /> {!isCollapsed && "Contractors"} </NavLink>
                 </li>
                 <li data-tip="Notifications" onClick={() => setActiveSection("notifications")}>
-                    <FiBell /> {!isCollapsed && "Notifications"}
+                   <NavLink to={"/notifications"}> <FiBell /> {!isCollapsed && "Notifications"} </NavLink>
                 </li>
                 <li data-tip="Reports" onClick={() => setActiveSection("reports")}>
-                    <FiBarChart2 /> {!isCollapsed && "Reports"}
+                   <NavLink to={"/reports"}> <FiBarChart2 /> {!isCollapsed && "Reports"} </NavLink>
                 </li>
                 <li data-tip="Admin Dashboard" onClick={() => setActiveSection("admin-dashboard")}>
-             s       <FiHome /> {!isCollapsed && "Admin Dashboard"}
+                   <NavLink to={"/admin-dashboard"}> <FiHome /> {!isCollapsed && "Admin Dashboard"} </NavLink>
                 </li>
                 <li data-tip="Settings" onClick={() => setActiveSection("settings")}>
-                    <FiHome /> {!isCollapsed && "Settings"}
+                   <NavLink to={"/settings"}> <FiHome /> {!isCollapsed && "Settings"} </NavLink>
                 </li>
 
             </ul>
