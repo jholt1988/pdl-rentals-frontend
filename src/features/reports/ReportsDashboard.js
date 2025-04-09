@@ -1,6 +1,8 @@
 // src/features/reports/ReportsDashboard.jsx
 import React, { useEffect } from 'react';
 import useReports from './useReports';
+import StatCard from '../../components/StatCard';
+import { DollarSign, Users, Wrench } from 'lucide-react';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line
 } from 'recharts';
@@ -16,21 +18,25 @@ const ReportsDashboard = () => {
         <div className="p-6 space-y-6">
             <h2 className="text-2xl font-bold">Reports Dashboard</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-white p-4 rounded shadow">
-                    <h4 className="text-gray-500">Total Rent Collected</h4>
-                    <p className="text-xl font-bold">${data.totalRent?.toFixed(2) || 0}</p>
-                </div>
-
-                <div className="bg-white p-4 rounded shadow">
-                    <h4 className="text-gray-500">Active Leases</h4>
-                    <p className="text-xl font-bold">{data.activeLeases || 0}</p>
-                </div>
-
-                <div className="bg-white p-4 rounded shadow">
-                    <h4 className="text-gray-500">Open Maintenance</h4>
-                    <p className="text-xl font-bold">{data.openMaintenance || 0}</p>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <StatCard
+                    icon={DollarSign}
+                    label="Total Rent Collected"
+                    value={`$${data.totalRent?.toFixed(2) || '0.00'}`}
+                    color="green"
+                />
+                <StatCard
+                    icon={Users}
+                    label="Active Leases"
+                    value={data.activeLeases || 0}
+                    color="blue"
+                />
+                <StatCard
+                    icon={Wrench}
+                    label="Open Maintenance"
+                    value={data.openMaintenance || 0}
+                    color="red"
+                />
             </div>
 
             <div className="bg-white p-4 rounded shadow">

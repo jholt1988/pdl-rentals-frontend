@@ -1,88 +1,73 @@
-// src/features/tenants/TenantManager.jsx
+// src/features/tenants/TenantForm.jsx
 import React, { useState } from 'react';
-import useTenants from './useTenants';
-import TenantForm from './TenantForm';
+import ModalWrapper from '../../components/ModalWrapper';
 
-const TenantManager = () => {
-    const {
-        tenants,
-        loading,
-        createTenant,
-        updateTenant,
-        deleteTenant
-    } = useTenants();
+const TenantForm = ({ initialData = {}, onClose, onSubmit }) => {
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        ...initialData
+    });
 
-    const [editingTenant, setEditingTenant] = useState(null);
-    const [isFormOpen, setIsFormOpen] = useState(false);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(form);
+    };
 
     return (
-        <div className="p-6">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Tenants</h2>
-                <button
-                    onClick={() => {
-                        setEditingTenant(null);
-                        setIsFormOpen(true);
-                    }}
-                    className="px-4 py-2 bg-blue-600 text-white rounded"
-                >
-                    Add Tenant
-                </button>
+        <ModalWrapper onClose={onClose}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
+                <h3 className="text-xl font-semibold mb-4">
+                    {initialData?.id ? 'Edit Tenant' : 'Add Tenant'}
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Full Name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full border px-3 py-2 rounded"
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full border px-3 py-2 rounded"
+                    />
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone"
+                        value={form.phone}
+                        onChange={handleChange}
+                        required
+                        className="w-full border px-3 py-2 rounded"
+                    />
+                    <div className="flex justify-end space-x-2">
+                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
+                            Cancel
+                        </button>
+                        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+                            {initialData?.id ? 'Update' : 'Create'}
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            {loading ? (
-                <p>Loading tenants...</p>
-            ) : (
-                <table className="min-w-full bg-white border">
-                    <thead>
-                        <tr className="bg-gray-100">
-                            <th className="text-left p-2">Name</th>
-                            <th className="text-left p-2">Email</th>
-                            <th className="text-left p-2">Phone</th>
-                            <th className="text-left p-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tenants.map((tenant) => (
-                            <tr key={tenant.id} className="border-t">
-                                <td className="p-2">{tenant.name}</td>
-                                <td className="p-2">{tenant.email}</td>
-                                <td className="p-2">{tenant.phone}</td>
-                                <td className="p-2 space-x-2">
-                                    <button
-                                        onClick={() => {
-                                            setEditingTenant(tenant);
-                                            setIsFormOpen(true);
-                                        }}
-                                        className="px-3 py-1 bg-yellow-400 text-white rounded"
-                                    >Edit</button>
-                                    <button
-                                        onClick={() => deleteTenant(tenant.id)}
-                                        className="px-3 py-1 bg-red-600 text-white rounded"
-                                    >Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
-
-            {isFormOpen && (
-                <TenantForm
-                    initialData={editingTenant}
-                    onClose={() => setIsFormOpen(false)}
-                    onSubmit={async (data) => {
-                        if (editingTenant) {
-                            await updateTenant(editingTenant.id, data);
-                        } else {
-                            await createTenant(data);
-                        }
-                        setIsFormOpen(false);
-                    }}
-                />
-            )}
-        </div>
+            </div>
+            </ModalWrapper>
     );
 };
 
-export default TenantManager;
+export default TenantForm;

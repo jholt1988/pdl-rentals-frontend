@@ -1,6 +1,6 @@
 // src/features/properties/PropertyForm.jsx
 import React, { useState, useEffect } from 'react';
-
+import ModalWrapper from '../../components/ModalWrapper';
 const PropertyForm = ({ initialData = {}, onClose, onSubmit }) => {
     const [form, setForm] = useState({
         name: '',
@@ -21,6 +21,9 @@ const PropertyForm = ({ initialData = {}, onClose, onSubmit }) => {
     };
 
     return (
+
+        
+        <ModalWrapper onClose={onClose}>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
                 <h3 className="text-xl font-semibold mb-4">
@@ -73,7 +76,8 @@ const PropertyForm = ({ initialData = {}, onClose, onSubmit }) => {
                     </div>
                 </form>
             </div>
-        </div>
+            </div>
+        </ModalWrapper>
     );
 };
 

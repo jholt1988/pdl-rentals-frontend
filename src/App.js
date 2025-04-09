@@ -22,6 +22,10 @@ import "./styles.css"
 
 import ReportsDashboard from "./features/reports/ReportsDashboard";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 
 const PrivateRoute = React.memo(({ children }) => {
@@ -31,6 +35,16 @@ const PrivateRoute = React.memo(({ children }) => {
 
 function App() {
   return (
+    <div className="App">
+    <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  pauseOnHover
+  theme="colored"
+/>
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -89,7 +103,8 @@ function App() {
 
         </Route>
       </Routes>
-    </Router>
+      </Router>
+      </div>
   );
 }
 
