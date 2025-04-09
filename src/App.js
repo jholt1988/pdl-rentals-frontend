@@ -7,16 +7,19 @@ import Dashboard from "./pages/Dashboard";
 import AuthContext from "./context/AuthContext";
 import GlobalLayout from "./GlobalLayout";
 import ProtectedRoute from "./routes/protectedRoutes";
-import PaymentsList from "./features/payments/PaymentsList";
+import PaymentsList from "./features/payments/PaymentManager";
 import ContractorsList from "./components/Lists/ContractorsList";
 import ExpenseList from "./components/Lists/ExpenseList";
-import MaintenanceRequestList from "./components/Lists/MaintenanceRequestList";
+import MaintenanceManager from "./features/maintenance/MaintenanceManager";
 
 import NotificationsList from "./components/Lists/NotificationsList";
-import PropertyManager from "./featuresuhyj/properties/PropertyManager";
+import PropertyManager from "./features/properties/PropertyManager";
 import LeaseManager from "./features/leases/LeaseManager";
-import TenantManager from "./features/tenantsTenantManager";
-import "./theme.css";
+import TenantManager from "./features/tenants/TenantManager";
+import DocumentManager from "./features/documents/DocumentManager";
+
+import "./styles.css"
+
 import ReportsDashboard from "./features/reports/ReportsDashboard";
 
 
@@ -38,9 +41,9 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute>
+              
                 <Dashboard />
-              </PrivateRoute>
+              
             }
           />
         
@@ -72,16 +75,18 @@ function App() {
         <Route
           path="/contractors"
           element={
-            <ProtectedRoute>
+            
               <ContractorsList />
-            </ProtectedRoute>
+            
           }
         />
         <Route path="/expenses" element={<ProtectedRoute><ExpenseList /></ProtectedRoute>} />
-        <Route path="/maintenance" element={<ProtectedRoute><MaintenanceRequestList /></ProtectedRoute>} />
+          <Route path="/maintenance" element={<MaintenanceManager />} />
         <Route path="/leases" element={<LeaseManager/>} /> 
-        <Route path="/notifications" element={<ProtectedRoute><NotificationsList /></ProtectedRoute>} />
-          <Route path="/documents" element={<ReportsDashboard />} />
+        <Route path="/notifications" element={<NotificationsList />} />
+          <Route path="/reports" element={<ReportsDashboard />} />
+          <Route path="/documents" element={<DocumentManager />} />
+
         </Route>
       </Routes>
     </Router>

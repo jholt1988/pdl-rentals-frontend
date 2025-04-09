@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import {Tooltip} from "react-tooltip";
 import "./Sidebar.css";
 import { motion } from "framer-motion";
-import { FiHome, FiDollarSign, FiTool, FiBell, FiBarChart2, FiMenu } from "react-icons/fi";
+import { FiHome, FiDollarSign, FiTool, FiBell, FiBarChart2, FiMenu, FiLoader, FiWatch } from "react-icons/fi";
 import  {NavLink } from "react-router-dom";
 const Sidebar = ({ setActiveSection }) => {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
         <motion.div
-            initial={{ x: -200 }}
-            animate={{ x: isCollapsed ? -200 : 0 }}
+            initial={{ x: 10 }}
+            animate={{ x: isCollapsed ? 10 : 0 }}
             transition={{ duration: 0.5 }}
             className={`sidebar ${isCollapsed ? "collapsed" : ""}`}
         >
@@ -45,9 +45,12 @@ const Sidebar = ({ setActiveSection }) => {
                 </li>
                 <li data-tip="Reports" onClick={() => setActiveSection("reports")}>
                    <NavLink to={"/reports"}> <FiBarChart2 /> {!isCollapsed && "Reports"} </NavLink>
-                </li>
+             </li>
+             <li data-tip="Documents" onClick={() => setActiveSection("documents")}>
+                <NavLink to={"/documents"}> <FiLoader /> {!isCollapsed && "Documents"} </NavLink>
+               </li>
                 <li data-tip="Admin Dashboard" onClick={() => setActiveSection("admin-dashboard")}>
-                   <NavLink to={"/admin-dashboard"}> <FiHome /> {!isCollapsed && "Admin Dashboard"} </NavLink>
+                   <NavLink to={"/admin-dashboard"}> <FiWatch /> {!isCollapsed && "Admin Dashboard"} </NavLink>
                 </li>
                 <li data-tip="Settings" onClick={() => setActiveSection("settings")}>
                    <NavLink to={"/settings"}> <FiHome /> {!isCollapsed && "Settings"} </NavLink>
