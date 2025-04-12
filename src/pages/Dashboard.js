@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import DarkModeToggle from "../components/Dashboard/DarkModeToggle";
+
 import Sidebar from "../components/Dashboard/Sidebar";
 import { motion } from "framer-motion";
 import * as apiService from "../services/apiService";
@@ -58,8 +58,7 @@ const Dashboard = () => {
     return (
     
         <div className="dashboard-container">
-            <DarkModeToggle />
-            
+                        
             <h2 className="dashboard-title">Dashboard</h2>
             <motion.div
                 initial={{ opacity: 0 }}
