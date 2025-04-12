@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "nyc cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -50,13 +51,18 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.14.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/lodash.debounce": "^4.0.9",
     "axios-mock-adapter": "^1.20.0",
     "babel-jest": "^29.7.0",
+    "babel-plugin-istanbul": "^7.0.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.5.1"
+    "istanbul": "^0.4.5",
+    "jest": "^27.5.1",
+    "nyc": "^17.1.0",
+    "vite-plugin-istanbul": "^7.0.0"
   }
 }

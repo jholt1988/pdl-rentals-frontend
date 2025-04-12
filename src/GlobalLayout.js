@@ -2,7 +2,10 @@
 import React, { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "./components/Dashboard/Sidebar";
-import ThemeToggle from "./components/ThemeToggle"
+
+import ThemeToggle from "./components/ThemeToggle"; // Import your ThemeToggle component    
+
+
 import "./theme.css"
 import "./styles.css"
 
@@ -26,7 +29,11 @@ const GlobalLayout = () => {
 
     return (
         <div className="layout-container">
+
 	    <ThemeToggle />
+
+            
+
             <Sidebar
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}
