@@ -18,6 +18,7 @@ import LeaseManager from "./features/leases/LeaseManager";
 import TenantManager from "./features/tenants/TenantManager";
 import DocumentManager from "./features/documents/DocumentManager";
 import UnauthorizedPage from "./pages/UnauthorizedPage";
+import LedgerTable from "./features/ledger/LedgerTable";
 
 import "./styles.css"
 
@@ -55,24 +56,68 @@ function App() {
           <Route element={<GlobalLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
 
-            <Route path="/properties" element={<PropertyManager />} />
-            <Route path="/tenants" element={<TenantManager />} />
-            <Route path="/payments" element={<PaymentsList />} />
+            <Route
+              path="/properties"
+              element={
+                <PrivateRoute>
+                  <PropertyManager />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/tenants"
+              element={
+                <PrivateRoute>
+                  <TenantManager />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/payments"
+              element={
+                <PrivateRoute>
+                  <PaymentsList />
+                </PrivateRoute>
+              }
+            />
             <Route path="/contractors" element={<ContractorsList />} />
             <Route
               path="/expenses"
               element={
-               
+                <PrivateRoute>
                   <ExpenseList />
-                
+                </PrivateRoute>
               }
             />
-            <Route path="/maintenance" element={<MaintenanceManager />} />
-            <Route path="/leases" element={<LeaseManager />} />
-            <Route path="/notifications" element={<NotificationsList />} />
-            <Route path="/reports" element={<ReportsDashboard />} />
-            <Route path="/documents" element={<DocumentManager />} />
-            <Route path="unauthorized" element={<UnauthorizedPage/>} />
+            <Route
+              path="/maintenance"
+              element={
+                <PrivateRoute>
+                  <MaintenanceManager />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/leases"
+              element={
+                <PrivateRoute>
+                  <LeaseManager />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/notifications"
+              element={
+                <PrivateRoute>
+                  <NotificationsList />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/reports" element={<PrivateRoute><ReportsDashboard /></PrivateRoute>} />
+            <Route path="/documents" element={<PrivateRoute><DocumentManager /></PrivateRoute>} />
+            <Route path="unauthorized" element={<UnauthorizedPage />} />
+            <Route path="/ledgers" element={<PrivateRoute>< LedgerTable/></PrivateRoute>} />
+
           </Route>
         </Routes>
       </Router>

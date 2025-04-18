@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import api from '@/utils/axios';
+import api from '../../utils/axios';
 
 const useLedger = ({ tenantId, propertyId } = {}) => {
     const [entries, setEntries] = useState([]);
@@ -32,3 +32,6 @@ const useLedger = ({ tenantId, propertyId } = {}) => {
     }, [tenantId, propertyId]);
 
     return { entries, loading };
+};
+
+export default useLedger;

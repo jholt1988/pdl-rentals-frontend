@@ -16,6 +16,7 @@ const TenantManager = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     return (
+        
         <div className="p-6">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">Tenants</h2>
@@ -45,44 +46,47 @@ const TenantManager = () => {
                     <tbody>
                         {tenants.map((tenant) => (
                             <tr key={tenant.id} className="border-t">
-                                <td className="p-2">{tenant.name}</td>
-                                <td className="p-2">{tenant.email}</td>
-                                <td className="p-2">{tenant.phone}</td>
-                                <td className="p-2 space-x-2">
-                                    <button
-                                        onClick={() => {
-                                            setEditingTenant(tenant);
-                                            setIsFormOpen(true);
-                                        }}
-                                        className="px-3 py-1 bg-yellow-400 text-white rounded"
-                                    >Edit</button>
-                                    <button
-                                        onClick={() => deleteTenant(tenant.id)}
-                                        className="px-3 py-1 bg-red-600 text-white rounded"
-                                    >Delete</button>
-                                </td>
-                            </tr>
+                                        <td className="p-2">{tenant.name}</td>
+                                        <td className="p-2">{tenant.email}</td>
+                                        <td className="p-2">{tenant.phone}</td>
+                                        <td className="p-2 space-x-2">
+                                            <button
+                                                onClick={() => {
+                                                    setEditingTenant(tenant);
+                                                    setIsFormOpen(true);
+                                                }}
+                                                className="px-3 py-1 bg-yellow-400 text-white rounded"
+                                            >Edit</button>
+                                            <button
+                                                onClick={() => deleteTenant(tenant.id)}
+                                                className="px-3 py-1 bg-red-600 text-white rounded"
+                                            >Delete</button>
+                                        </td>
+                                    </tr>
                         ))}
                     </tbody>
                 </table>
             )}
-
+        
             {isFormOpen && (
-                <TenantForm
-                    initialData={editingTenant}
-                    onClose={() => setIsFormOpen(false)}
-                    onSubmit={async (data) => {
-                        if (editingTenant) {
-                            await updateTenant(editingTenant.id, data);
-                        } else {
-                            await createTenant(data);
-                        }
-                        setIsFormOpen(false);
-                    }}
-                />
+                                        <TenantForm
+                                            initialData={editingTenant}
+                                            onClose={() => setIsFormOpen(false)}
+                                            onSubmit={async (data) => {
+                                                if (editingTenant) {
+                                                    await updateTenant(editingTenant.id, data);
+                                                } else {
+                                                    await createTenant(data);
+                                                }
+                                                setIsFormOpen(false);
+                                            }}
+                                        />
             )}
         </div>
     );
 };
 
 export default TenantManager;
+
+
+

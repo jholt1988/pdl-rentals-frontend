@@ -44,9 +44,10 @@ const PaymentManager = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {payments.map((payment) => (
+                            {payments.map((payment) => (
+                        
                             <tr key={payment.id} className="border-t">
-                                <td className="p-2">${payment.amount.toFixed(2)}</td>
+                                <td className="p-2">${payment.amount}</td>
                                 <td className="p-2">{payment.method}</td>
                                 <td className="p-2">{payment.status}</td>
                                 <td className="p-2">{new Date(payment.createdAt).toLocaleDateString()}</td>

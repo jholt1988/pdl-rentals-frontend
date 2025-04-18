@@ -30,7 +30,10 @@ const PropertyManager = () => {
             toast.error('Error creating property');
         }
     };
-
+    const getpropertyName = (property) => {
+        const addressStr = property.address.split(" ");
+        const name = addressStr.find(str => str.includes("/[a - zA - Z]{ 2, })/"));
+    }
     const handleUpdate = async (id, formData) => {
         try {
             await updateProperty(id, formData);
