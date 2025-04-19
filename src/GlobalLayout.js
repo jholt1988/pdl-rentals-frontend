@@ -8,6 +8,7 @@ import ThemeToggle from "./components/ThemeToggle"; // Import your ThemeToggle c
 
 import "./theme.css"
 import "./styles.css"
+import "../src/components/Dashboard/Sidebar.css"
 
 const GlobalLayout = () => {
     const [activeSection, setActiveSection] = useState('');
@@ -29,6 +30,7 @@ const GlobalLayout = () => {
 
     return (
         <div className="layout-container">
+            <div className="sideBar">
 
 	    <ThemeToggle />
 
@@ -38,13 +40,15 @@ const GlobalLayout = () => {
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}
                 
-            />
+                />
+            </div>
             <div className="main-content">
-                <div className="container">
+                <div className="main">
                     <Outlet />
                 </div>
+            
             </div>
-        </div>
+            </div>
     );
 };
 

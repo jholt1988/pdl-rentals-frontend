@@ -114,7 +114,28 @@ footer {
 }
 
 /* Layout Containers */
-.container {
+.layout-container {
+ display: flex;
+ flex-direction: row;
+}
+
+/* Header */
+header {
+  grid-area: header;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main Content */
+main {
+  grid-area: main;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding:15px;
   max-width: 1200px;
   margin: auto;
   padding: 20px;
@@ -123,4 +144,8 @@ footer {
 /* Utility Classes */
 .text-center {
   text-align: center;
+}
+
+sidebar{
+grid-auto-flow: column;
 }

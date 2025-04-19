@@ -58,7 +58,7 @@ const Dashboard = () => {
     return (
     
         <div className="dashboard-container"
-         
+         >
             
 
             <h2 className="dashboard-title">Dashboard</h2>
