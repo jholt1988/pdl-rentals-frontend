@@ -3,7 +3,7 @@ import ModalWrapper from '../components/ui/ModalWrapper';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 import { showSuccess, showError } from '../components/ui/toast';
-import api from '../services/apiService'; // Adjust the path if needed
+import api from '../utils/axios'; // Adjust the path if needed
 
 const ChangePasswordModal = ({ onClose }) => {
     const [currentPassword, setCurrentPassword] = useState('');

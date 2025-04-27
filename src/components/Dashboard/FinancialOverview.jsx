@@ -3,6 +3,7 @@ import Card from '../ui/Card';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 import api from '../../utils/axios'; // adjust path if needed
+import { motion } from 'framer-motion';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -52,6 +53,13 @@ const FinancialOverview = () => {
     };
 
     return (
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+            className="w-full"
+        >
         <Card title="Financial Overview">
             <div className="h-64">
                 {loading ? (
@@ -60,7 +68,8 @@ const FinancialOverview = () => {
                     <Line data={chartData} options={options} />
                 )}
             </div>
-        </Card>
+            </Card>
+        </motion.div>
     );
 };
 

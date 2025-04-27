@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth"; // Change this if your backend is hosted
-// const API_URL = process.env.REACT_APP_AUTH_URL || "http://18.219.234.156:5000/api/users"; // Change this if your backend is hosted
+const API_URL = "http://localhost:5000/api/auth"; 
+// process.env.REACT_APP_AUTH_URL ||// Change this if your backend is hosted
+//  const API_URL ="http://18.219.234.156:5000/api/auth"; // Change this if your backend is hosted
 
 // Register User
 export const registerUser = async (userData) => {

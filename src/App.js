@@ -60,65 +60,65 @@ function App() {
             <Route
               path="/properties"
               element={
-                <PrivateRoute>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <PropertyManager />
-                </PrivateRoute>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/tenants"
               element={
-                <PrivateRoute>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <TenantManager />
-                </PrivateRoute>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/payments"
               element={
-                <PrivateRoute>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <PaymentsList />
-                </PrivateRoute>
+                </ProtectedRoute>
               }
             />
             <Route path="/contractors" element={<ContractorsList />} />
             <Route
               path="/expenses"
               element={
-                <PrivateRoute>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <ExpenseList />
-                </PrivateRoute>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/maintenance"
               element={
-                <PrivateRoute>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <MaintenanceManager />
-                </PrivateRoute>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/leases"
               element={
-                <PrivateRoute>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <LeaseManager />
-                </PrivateRoute>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/notifications"
               element={
-                <PrivateRoute>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <NotificationsList />
-                </PrivateRoute>
+                </ProtectedRoute>
               }
             />
-            <Route path="/reports" element={<PrivateRoute><ReportsDashboard /></PrivateRoute>} />
-            <Route path="/documents" element={<PrivateRoute><DocumentManager /></PrivateRoute>} />
+            <Route path="/reports" element={<ProtectedRoute allowedRoles={['Admin']}><ReportsDashboard /></ProtectedRoute>} />
+            <Route path="/documents" element={<ProtectedRoute allowedRoles={['Admin']}><DocumentManager /></ProtectedRoute>} />
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
-            <Route path="/ledgers" element={<PrivateRoute>< LedgerTable /></PrivateRoute>} />
-            <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path="/ledgers" element={<ProtectedRoute allowedRoles={['Admin']}>< LedgerTable /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute allowedRoles={['Admin']}><ProfilePage /></ProtectedRoute>} />
 
           </Route>
         </Routes>

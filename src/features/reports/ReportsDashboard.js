@@ -6,7 +6,7 @@ import { DollarSign, Users, Wrench } from 'lucide-react';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line
 } from 'recharts';
-
+import { motion } from 'framer-motion';
 const ReportsDashboard = () => {
     const { data, loadReports } = useReports();
 
@@ -19,24 +19,42 @@ const ReportsDashboard = () => {
             <h2 className="text-2xl font-bold">Reports Dashboard</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
                 <StatCard
                     icon={DollarSign}
                     label="Total Rent Collected"
                     value={`$${data.totalRent?.toFixed(2) || '0.00'}`}
-                    color="green"
-                />
+                        color="green"
+                    />
+                    </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
                 <StatCard
                     icon={Users}
                     label="Active Leases"
                     value={data.activeLeases || 0}
                     color="blue"
-                />
+                    />
+                    </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
                 <StatCard
                     icon={Wrench}
                     label="Open Maintenance"
                     value={data.openMaintenance || 0}
                     color="red"
-                />
+                    />
+                </motion.div>
             </div>
 
             <div className="bg-white p-4 rounded shadow">

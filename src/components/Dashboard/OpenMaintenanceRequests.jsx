@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import api from '../../utils/axios'; // adjust path if needed
-
+import { motion } from 'framer-motion';
 const priorityColors = {
     urgent: 'error',
     high: 'warning',
@@ -28,6 +28,11 @@ const OpenMaintenanceRequests = () => {
     }, []);
 
     return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+        >
         <Card title="Open Maintenance Requests">
             {loading ? (
                 <p className="p-4 text-center text-gray-500">Loading...</p>
@@ -46,7 +51,8 @@ const OpenMaintenanceRequests = () => {
                     ))}
                 </div>
             )}
-        </Card>
+            </Card>
+        </motion.div>
     );
 };
 

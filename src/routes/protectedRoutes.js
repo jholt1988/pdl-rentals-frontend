@@ -1,18 +1,17 @@
-import { FC } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
-const useAuth = () => {
-    return Boolean(localStorage.getItem("token"));
-};
+const ProtectedRoute = ({ allowedRoles, children }) => {
+    const { user, loading } = useAuth();
 
-const ProtectedRoute=() => {
-    const isAuthenticated = useAuth();
+    if (loading) return <p>Loading...</p>;
 
-    if (!isAuthenticated) {
-        return <Navigate to={ "/login" } replace />;
+    if (!user || (allowedRoles && !allowedRoles.includes(user.role))) {
+        return <Navigate to="/unauthorized" replace />;
     }
 
-    return <Outlet />;
+    return children;
 };
 
 export default ProtectedRoute;

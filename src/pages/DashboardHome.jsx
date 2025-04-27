@@ -1,6 +1,6 @@
 
 import React from 'react';
-import StatCard from '@/components/ui/StatCard';
+import StatCard from "../components/StatCard";
 import { Users, Home, DollarSign, Wrench } from 'lucide-react'; // example icons
 
 const stats = [

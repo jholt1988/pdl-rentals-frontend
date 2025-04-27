@@ -2,11 +2,12 @@ import axios from "axios";
 import { getToken } from "./authService";
 import { setupCache } from "axios-cache-interceptor";
 import axiosRetry from "axios-retry";
+import api from '../utils/axios'; // adjust path if needed
 
 const API_URL = "http://localhost:5000/api";
-// const API_URL = process.env.REACT_APP_API_URL || "http://18.219.234.156:5000/api" || "http://localhost:5000/api";
-const Axios = axios.create({ baseURL: API_URL, timeout: 5000 });
-const axiosInstance = setupCache(Axios, { maxAge: 15 * 60 * 1000 });
+//  process.env.REACT_APP_API_URL ||
+// const API_URL =  "http://18.219.234.156:5000/api";
+const axiosInstance = setupCache(axios, { maxAge: 15 * 60 * 1000 });
 
 axiosRetry(axiosInstance, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
 
@@ -331,3 +332,10 @@ export const generateReport = async (reportType) => {
     const response = await request("post", `/reports/generate/${reportType}`);
     return response.data;
 }
+
+ // adjust path if needed
+
+export const getRecentLeases = () => api.get('/leases/recent');
+export const getLatestPayments = () => api.get('/payments/recent');
+export const getOpenMaintenanceRequests = () => api.get('/maintenance/open');
+export const getIncomeSummary = () => api.get('/payments/income-summary');

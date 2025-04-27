@@ -4,7 +4,7 @@ import Card from '../components/ui/Card';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 import useAuth from '../hooks/useAuth';
-import ChangePasswordModal from '../components/modals/ChangePasswordModal'; // Adjust path if needed
+import ChangePasswordModal from "../components/ChangePasswordModal"; // Adjust path if needed
 
 const ProfilePage = () => {
     const { user, loading } = useAuth();

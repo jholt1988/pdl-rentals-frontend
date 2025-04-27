@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import api from '../../utils/axios'; // adjust path if needed
+import { motion } from 'framer-motion';
 
 const statusColors = {
     completed: 'success',
@@ -28,6 +29,11 @@ const LatestPayments = () => {
     }, []);
 
     return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+        >
         <Card title="Latest Payments">
             {loading ? (
                 <p className="p-4 text-center text-gray-500">Loading...</p>
@@ -59,7 +65,8 @@ const LatestPayments = () => {
                     </table>
                 </div>
             )}
-        </Card>
+            </Card>
+        </motion.div>
     );
 };
 

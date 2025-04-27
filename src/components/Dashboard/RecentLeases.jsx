@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
-import api from '../../utils/axios'; // adjust path if needed
+import { showError } from '../ui/toast';
+import { getRecentLeases } from '../../services/apiService';
+import { motion } from 'framer-motion';
 
 const statusColors = {
   active: 'success',
@@ -16,10 +18,10 @@ const RecentLeases = () => {
   useEffect(() => {
     const fetchLeases = async () => {
       try {
-        const { data } = await api.get('/leases/recent');
+        const { data } = await getRecentLeases();
         setLeases(data);
       } catch (err) {
-        console.error('Failed to fetch leases', err);
+        showError('Failed to fetch recent leases');
       } finally {
         setLoading(false);
       }
@@ -28,6 +30,11 @@ const RecentLeases = () => {
   }, []);
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
     <Card title="Recent Leases">
       {loading ? (
         <p className="p-4 text-center text-gray-500">Loading...</p>
@@ -45,8 +52,8 @@ const RecentLeases = () => {
               </tr>
             </thead>
             <tbody>
-              {leases.map((lease, index) => (
-                <tr key={index} className="border-t">
+              {leases.map((lease) => (
+                <tr key={lease.id} className="border-t">
                   <td className="p-2">{lease.tenantName}</td>
                   <td className="p-2">{lease.propertyName}</td>
                   <td className="p-2">{lease.startDate}</td>
@@ -59,7 +66,8 @@ const RecentLeases = () => {
           </table>
         </div>
       )}
-    </Card>
+      </Card>
+      </motion.div>
   );
 };
 
