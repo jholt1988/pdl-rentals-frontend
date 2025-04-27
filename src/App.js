@@ -19,11 +19,12 @@ import TenantManager from "./features/tenants/TenantManager";
 import DocumentManager from "./features/documents/DocumentManager";
 import UnauthorizedPage from "./pages/UnauthorizedPage";
 import LedgerTable from "./features/ledger/LedgerTable";
-
+import DashboardHome from "./pages/DashboardHome";
 import "./styles.css"
 
 import ReportsDashboard from "./features/reports/ReportsDashboard";
-
+import ProfilePage
+  from "./pages/ProfilePage";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -54,7 +55,7 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route element={<GlobalLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<DashboardHome />} />
 
             <Route
               path="/properties"
@@ -115,8 +116,9 @@ function App() {
             />
             <Route path="/reports" element={<PrivateRoute><ReportsDashboard /></PrivateRoute>} />
             <Route path="/documents" element={<PrivateRoute><DocumentManager /></PrivateRoute>} />
-            <Route path="unauthorized" element={<UnauthorizedPage />} />
-            <Route path="/ledgers" element={<PrivateRoute>< LedgerTable/></PrivateRoute>} />
+            <Route path="/unauthorized" element={<UnauthorizedPage />} />
+            <Route path="/ledgers" element={<PrivateRoute>< LedgerTable /></PrivateRoute>} />
+            <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
 
           </Route>
         </Routes>

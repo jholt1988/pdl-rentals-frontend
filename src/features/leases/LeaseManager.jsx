@@ -61,7 +61,10 @@ const {
               </div>
               <div>
                 <strong>End:</strong> {lease.endDate}
-              </div>
+                </div>
+                <div>
+                  <strong>Monthly Rent:</strong> {lease.monthlyRent}
+                </div>
               <div>
                 <strong>Status:</strong> {lease.status}
               </div>

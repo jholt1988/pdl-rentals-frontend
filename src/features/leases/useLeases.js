@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 const useLeases = () => {
     const [leases, setLeases] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [leaseManagerRecords, setLeaseManagerRecords] = useState(null);
 
     const refreshLeases = async () => {
         try {
@@ -42,11 +43,31 @@ const useLeases = () => {
         refreshLeases();
     };
 
+    const leaseManagerRecord = () => {
+        if (!leaseManagerRecords) {
+            setLeaseManagerRecords(leases.map(lease => {
+                return {
+                    id: lease.id,
+                    tenantName: lease.tenant.name,
+                    propertyName: lease.property.address.split(" ")[1],
+                    startDate: lease.startDate,
+                    endDate: lease.endDate,
+                    status: lease.status,
+                    monthlyRent: lease.rentAmount
+                  
+             }
+            }));
+        }
+        return leaseManagerRecords;
+    }
+
+
     useEffect(() => {
         refreshLeases();
     }, []);
 
     return {
+        leaseManagerRecords,
         leases,
         loading,
         createLease,

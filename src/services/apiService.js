@@ -22,7 +22,7 @@ axiosInstance.interceptors.request.use(
     },
     (error) => Promise.reject(error)
 );
-
+ 
 const request = (method, url, data) => {
     if (method === "delete") {
         return axiosInstance.delete(url, { data });
